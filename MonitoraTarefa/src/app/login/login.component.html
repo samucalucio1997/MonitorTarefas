@@ -1,0 +1,14 @@
+<div class="blockLogin">
+   <form method="post" [formGroup]="login" (ngSubmit)="Submeter()">
+      <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">digite seu nome de usuário:</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nome de usuário" formControlName="nome" required/>
+      </div>   
+ 
+   <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">digite sua senha:</label>
+      <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="senha" formControlName="senha" required/>
+  </div>
+  <button type="submit" class="btn btn-outline-secondary">Entrar</button>
+  </form> 
+</div>

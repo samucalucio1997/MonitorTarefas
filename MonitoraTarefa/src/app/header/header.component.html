@@ -1,0 +1,11 @@
+<nav>
+    <div class="Home">
+      <h1><a routerLink="">Home</a></h1>
+    </div>
+    <div class="login">
+      <p *ngIf="peUser">Seja bem-vindo, {{peUser}}</p>
+      <a *ngIf="!peUser" routerLink="/login">Entrar</a>
+      <img *ngIf="img && peUser" [src]="img"/>
+      <button *ngIf="peUser" (click)="logout()">Sair</button>
+    </div>
+  </nav>

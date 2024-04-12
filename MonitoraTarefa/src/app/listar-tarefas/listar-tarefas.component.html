@@ -1,0 +1,41 @@
+<!-- <ul>
+    <li *ngFor="let item of lista">
+      <h2>{{ item.tarefa.titulo }}</h2>
+      <p>{{ item.tarefa.descricao }}</p>
+      <p>Prioridade: {{ item.tarefa.prioridade }}</p>
+      <p>Data limite: {{ item.tarefa.deadline }}</p>
+      <p>Concluído: {{ item.tarefa.concluido ? 'Sim' : 'Não' }}</p>
+  
+      <div *ngIf="item.usuario">
+        <h3>Usuário responsável:</h3>
+        <p>{{ item.usuario.nome }}</p>
+        <p>{{ item.usuario.email }}</p>
+      </div>
+    </li>
+  </ul> -->
+
+  <table class="table">
+    <thead>
+      <tr *ngFor="let item of lista">
+        <th scope="col">Tarefa</th>
+        <th scope="col">descrição</th>
+        <th scope="col">prioridade</th>
+        <th scope="col">Data Limite</th>
+        <th scope="col">status</th>
+        <th scope="col">responsavel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of lista">
+        <th scope="row" >{{ item.tarefa.titulo }}</th>
+          <td>{{ item.tarefa.descricao }}</td>
+          <td>Prioridade: {{ item.tarefa.prioridade }}</td>
+          <td>Data limite: {{ item.tarefa.deadline }}</td>
+          <td>Concluído: {{ item.tarefa.concluido ? 'Sim' : 'Não' }}</td>
+          <td>Responsavel: {{ item.usuario.nome }}</td>
+          <td>
+            <button (click)="remover(item.tarefa.titulo)">Excluir</button>
+          </td>
+        </tr>
+    </tbody>
+  </table>

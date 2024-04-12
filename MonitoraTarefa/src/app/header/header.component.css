@@ -1,0 +1,16 @@
+nav{
+    background-color: rgb(105, 104, 104);
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+}
+.login a{
+    color: black;
+    padding: 8px;
+}
+
+.Home a{
+   color:black;
+   padding: 8px;
+}
