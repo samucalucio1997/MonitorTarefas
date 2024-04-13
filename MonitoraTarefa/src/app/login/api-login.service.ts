@@ -12,7 +12,7 @@ export class ApiLoginService {
     'Content-Type':'application/json'
   });
 
-  constructor(private rout:Router,private httpclient: HttpClient) {}
+  constructor(private httpclient: HttpClient) {}
 
   fazerLogin(nome: string, senha:string):void{
     
@@ -25,8 +25,7 @@ export class ApiLoginService {
       localStorage.setItem('username',resp['usuario']['nome']);
       localStorage.setItem('id',resp['usuario']['id']);
       localStorage.setItem('token',resp['token']);
-      console.log(localStorage.getItem('token'))
-      this.rout.navigate(['listar-tarefas']);     
+      console.log(localStorage.getItem('token'));   
     });
   }
 }

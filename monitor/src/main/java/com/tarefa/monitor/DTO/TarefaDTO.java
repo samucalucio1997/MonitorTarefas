@@ -1,5 +1,23 @@
 package com.tarefa.monitor.DTO;
 
-public record TarefaDTO(String titulo,String descricao,String prioridade,String data,String responsavel) {
+import lombok.Setter;
 
+import lombok.Getter;
+
+public class TarefaDTO {
+    @Getter
+    @Setter
+    private String titulo;
+    @Getter
+    @Setter
+    private String descricao;
+    @Getter
+    @Setter
+    private String prioridade;
+    @Getter
+    @Setter
+    private String data;
+    @Getter
+    @Setter
+    private String responsavel;
 }

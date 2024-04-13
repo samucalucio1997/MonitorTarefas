@@ -19,33 +19,34 @@ export class CriarTarefaComponent implements OnInit{
  task!:taskResponseDTO;
  
  constructor(private form:FormBuilder,private tarsr:TarefaApiService) {
-  this.frm = form.group({
-       titulo:['', Validators.required],
-       descricao:['',Validators.required],
-       prioridade:['',Validators.required],
-       responsavel:['',Validators.required],
-       data: [Date.now(), Validators.required]
-
-  })
- }
-  
  
+  this.frm = form.group({
+    titulo:['', Validators.required],
+    descricao:['',Validators.required],
+    prioridade:['',Validators.required],
+    responsavel:['',Validators.required],
+    data: [Date.now(), Validators.required]
+  })
+}
+
+
 ngOnInit(): void {
   this.tarsr.carregarResp().subscribe(
     (responsaveis: ResponsavelDTO[]) => {
-       this.lista_responsavel =responsaveis
+      this.lista_responsavel =responsaveis
     }
   );     
 }
-  
-Salvar(){
-  if (this.frm.valid) { // Verifique se o formulário é válido
-    this.task.titulo = this.frm.get('titulo')?.value;
-    this.task.descricao = this.frm.get('descricao')?.value;
-    this.task.prioridade = this.frm.get('prioridade')?.value;
-    this.task.data = this.frm.get('data')?.value;
-    this.tarsr.SalvarTarefa(this.task);
+
+Salvar():void{
+  const body = {
+    titulo: this.frm.get('titulo')?.value,
+    descricao:this.frm.get('descricao')?.value,
+    prioridade:this.frm.get('prioridade')?.value,
+    data:this.frm.get('data')?.value,
+    responsavel:this.frm.get('responsavel')?.value
   }
+  this.tarsr.SalvarTarefa(body);
 } 
 
 }

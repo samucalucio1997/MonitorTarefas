@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiLoginService } from './api-login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   login:FormGroup<any>;
 $: any;
    
-   constructor(private fr:FormBuilder, private api:ApiLoginService) {
+   constructor(private fr:FormBuilder, private api:ApiLoginService,private rout:Router) {
     this.login = this.fr.group({
       nome:["",Validators.required],
       senha:["",Validators.required]
@@ -23,5 +24,6 @@ $: any;
       const username = this.login.get('nome')?.value;
       const senha = this.login.get('senha')?.value;
       this.api.fazerLogin(username,senha);
+      this.rout.navigate(['listar-tarefas']);  
    }
 }

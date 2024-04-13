@@ -33,14 +33,15 @@ public class TarefaController {
     public ResponseEntity<TaskResponseDTO> CadastrarTarefa(@RequestBody TarefaDTO task){
         try {
             Tarefa tarefa = new Tarefa();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            Date dt = sdf.parse(task.data());
+            System.out.println(task.getTitulo());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date dt = sdf.parse(task.getData() + " 14:38:20");
             tarefa.setDeadline(dt);
             tarefa.setConcluido(false);
-            tarefa.setDescricao(task.descricao());
-            tarefa.setPrioridade(task.prioridade());
-            tarefa.setTitulo(task.titulo());
-            var tarefaR = this.tarefaService.CriarTarefa(tarefa, task.responsavel());
+            tarefa.setDescricao(task.getDescricao());
+            tarefa.setPrioridade(task.getPrioridade());
+            tarefa.setTitulo(task.getTitulo());
+            var tarefaR = this.tarefaService.CriarTarefa(tarefa, task.getResponsavel());
             return ResponseEntity.status(200).body(tarefaR);
         } catch (Exception e) {
             // TODO: handle exception

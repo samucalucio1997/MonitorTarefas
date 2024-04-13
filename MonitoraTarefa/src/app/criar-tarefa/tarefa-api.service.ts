@@ -19,8 +19,10 @@ export class TarefaApiService {
 
   
   url = "http://localhost:8080/usuario/listarUsers";
+  urlCadTaf = "http://localhost:8080/task/cadastrarTarefa"
   headers = new HttpHeaders({
-    'Authorization':`${localStorage.getItem('token')}`
+    'Authorization':`${localStorage.getItem('token')}`,
+    'Content-Type':'application/json'
   })
   constructor(private srv:HttpClient) { }
   
@@ -28,7 +30,13 @@ export class TarefaApiService {
      return this.srv.get(this.url, { headers: this.headers });
   }
 
-  SalvarTarefa(taskResponseDTO: taskResponseDTO):void{
-      this.srv.post(this.url,taskResponseDTO,{headers:this.headers});
+ async SalvarTarefa(taskResponseDTO: any):Promise<void>{
+      const json = JSON.stringify(taskResponseDTO);
+      console.log(json);
+      this.srv.post(this.urlCadTaf, json, { headers: this.headers }).subscribe(
+        (resp:any)=>{
+          console.log(resp['Tarefa']['titulo']);
+        }
+      );
   }
 }
