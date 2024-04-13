@@ -3,6 +3,7 @@ package com.tarefa.monitor.service;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,10 @@ public class UsuarioService implements UserDetailsService{
 
     public Usuario PegarporId(UUID id){
         return this.usuarioRepository.findById(id).get();
+    }
+
+    public List<Usuario> ListarResponsavel(){
+        return this.usuarioRepository.findAll();
     }
 
 }

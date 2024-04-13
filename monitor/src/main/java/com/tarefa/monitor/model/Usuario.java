@@ -37,11 +37,6 @@ public class Usuario implements UserDetails{
     @Setter
     private String img_perfil;
 
-    @OneToMany
-    @Getter
-    @Setter
-    @JsonIgnore
-    private List<Tarefa> tarefas = new ArrayList<>();
 
     @Getter
     @Setter

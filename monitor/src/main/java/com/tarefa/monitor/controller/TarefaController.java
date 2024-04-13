@@ -30,17 +30,17 @@ public class TarefaController {
     private TarefaService tarefaService;
 
     @PostMapping(value = "/cadastrarTarefa",consumes = "application/json")
-    public ResponseEntity<TaskResponseDTO> CadastrarTarefa(@RequestBody TarefaDTO task,@RequestParam("nome") String nome_usuario){
+    public ResponseEntity<TaskResponseDTO> CadastrarTarefa(@RequestBody TarefaDTO task){
         try {
             Tarefa tarefa = new Tarefa();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date dt = sdf.parse(task.data());
             tarefa.setDeadline(dt);
             tarefa.setConcluido(false);
             tarefa.setDescricao(task.descricao());
             tarefa.setPrioridade(task.prioridade());
             tarefa.setTitulo(task.titulo());
-            var tarefaR = this.tarefaService.CriarTarefa(tarefa, nome_usuario);
+            var tarefaR = this.tarefaService.CriarTarefa(tarefa, task.responsavel());
             return ResponseEntity.status(200).body(tarefaR);
         } catch (Exception e) {
             // TODO: handle exception
@@ -64,7 +64,7 @@ public class TarefaController {
     }
 
     @DeleteMapping("/removerTarefa")
-    public ResponseEntity<Tarefa> DeleteTarefa(@RequestParam("tituto") String titulo){
+    public ResponseEntity<Tarefa> DeleteTarefa(@RequestParam("titulo") String titulo){
          try {
             return ResponseEntity.status(200).body(this.tarefaService.RemoverTarefa(titulo));
          } catch (Exception e) {

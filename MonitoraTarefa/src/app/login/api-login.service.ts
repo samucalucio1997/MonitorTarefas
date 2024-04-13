@@ -25,6 +25,7 @@ export class ApiLoginService {
       localStorage.setItem('username',resp['usuario']['nome']);
       localStorage.setItem('id',resp['usuario']['id']);
       localStorage.setItem('token',resp['token']);
+      console.log(localStorage.getItem('token'))
       this.rout.navigate(['listar-tarefas']);     
     });
   }

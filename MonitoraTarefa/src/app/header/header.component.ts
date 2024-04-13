@@ -30,5 +30,9 @@ ngOnInit(): void {
 
 logout():void{
   this.srcv.logout();
+  localStorage.setItem('token','');
+  localStorage.setItem('username','');
+  localStorage.setItem('id','');
+
 }
 }

@@ -3,6 +3,7 @@ package com.tarefa.monitor.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,11 @@ public class UsuarioController {
             // TODO: handle exception
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @GetMapping("/listarUsers")
+    public ResponseEntity<List<Usuario>> PegarListaUsers(){
+        return ResponseEntity.status(200).body(this.usuarioService.ListarResponsavel());
     }
    
 }

@@ -29,13 +29,17 @@
       <tr *ngFor="let item of lista">
         <th scope="row" >{{ item.tarefa.titulo }}</th>
           <td>{{ item.tarefa.descricao }}</td>
-          <td>Prioridade: {{ item.tarefa.prioridade }}</td>
-          <td>Data limite: {{ item.tarefa.deadline }}</td>
-          <td>Concluído: {{ item.tarefa.concluido ? 'Sim' : 'Não' }}</td>
-          <td>Responsavel: {{ item.usuario.nome }}</td>
+          <td> {{ item.tarefa.prioridade }}</td>
+          <td> {{ item.tarefa.deadline }}</td>
+          <td> {{ item.tarefa.concluido ? 'Sim' : 'Não' }}</td>
+          <td> {{ item.usuario.nome }}</td>
           <td>
             <button (click)="remover(item.tarefa.titulo)">Excluir</button>
           </td>
         </tr>
     </tbody>
   </table>
+  <a routerLink="criar-tarefa">cadastrar uma nova</a>
+  <div class="alert alert-danger" style="display: none;" role="alert">
+    A simple danger alert—check it out!
+  </div>

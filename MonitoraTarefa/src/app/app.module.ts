@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { CriarTarefaComponent } from './criar-tarefa/criar-tarefa.component';
-import { GoogleChartsModule } from 'angular-google-charts';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListarTarefasComponent } from './listar-tarefas/listar-tarefas.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule, DatePipe } from '@angular/common';
+import { CadastrarUsuarioComponent } from './cadastrar-usuario/cadastrar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +18,14 @@ import { CommonModule, DatePipe } from '@angular/common';
     LoginComponent,
     HeaderComponent,
     CriarTarefaComponent,
-    ListarTarefasComponent
+    ListarTarefasComponent,
+    CadastrarUsuarioComponent
   ],
   imports: [
     HttpClientModule,
     ReactiveFormsModule,
     BrowserModule,
     CommonModule,
-    GoogleChartsModule,
     AppRoutingModule
   ],
   providers: [],

@@ -17,6 +17,7 @@ export class ListarApiService {
 
 
   carregar():Array<any>{
+    console.log(localStorage.getItem('token'));
    this.http.get(this.url,{headers:this.header}).subscribe((resp:any) => {
      this.lista = resp;
    })

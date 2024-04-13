@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,9 @@ public class TarefaService {
 
 
 
-    public TaskResponseDTO CriarTarefa(Tarefa tarefa,String usuario){
-        var user = this.usuarioRepository.findByNome(usuario);
-        user.getTarefas().add(tarefa);
+    public TaskResponseDTO CriarTarefa(Tarefa tarefa,String usuarioid){
+        
+        var user = this.usuarioRepository.findById(UUID.fromString(usuarioid)).get();
         tarefa.setResponsavel(user);
         Optional<Tarefa> task = this.tarefaRepository.findAll().stream()
         .filter(n -> 
