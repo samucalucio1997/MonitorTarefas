@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class ListarApiService {
   url:string = "http://localhost:8080/task/listar";
   urldelete:string = "http://localhost:8080/task/removerTarefa";
+  urlconcl:string = "http://localhost:8080/task/concluir"
   header = new HttpHeaders({
      'Authorization':`${localStorage.getItem('token')}`
   })
@@ -24,16 +25,17 @@ export class ListarApiService {
    return this.lista;
   }
 
-  async delete(titulo: string): Promise<string | void> {
-    const response:any = await this.http.delete(`${this.urldelete}?titulo=${titulo}`, { headers: this.header }).toPromise();
-  
-    if (response.status === 200) {
-      return `tarefa ${response.nome}`; // Assuming 'nome' is a property in the response object
-    } else {
-      // Handle error scenario (e.g., log error, return error message)
-      console.error('Erro ao excluir tarefa:', response.status);
-      return undefined; // Or return an appropriate error message
-    }
+  delete(titulo: string): void {
+    const response:any = this.http.delete(`${this.urldelete}?titulo=${titulo}`, { headers: this.header }).subscribe(
+      (s:any) => {
+        console.log(s);
+      }
+    );
+  }
+
+  concluir(titulo:string): void{
+   const resp:any = this.http.patch(this.urlconcl+`?titulo=${titulo}`,{header:this.header})
+    .subscribe((r:any) => {console.log(r)});
   }
 
 }

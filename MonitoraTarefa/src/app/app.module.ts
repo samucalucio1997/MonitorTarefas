@@ -11,6 +11,7 @@ import { ListarTarefasComponent } from './listar-tarefas/listar-tarefas.componen
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule, DatePipe } from '@angular/common';
 import { CadastrarUsuarioComponent } from './cadastrar-usuario/cadastrar-usuario.component';
+import { EditarTarefaComponent } from './editar-tarefa/editar-tarefa.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CadastrarUsuarioComponent } from './cadastrar-usuario/cadastrar-usuario
     HeaderComponent,
     CriarTarefaComponent,
     ListarTarefasComponent,
-    CadastrarUsuarioComponent
+    CadastrarUsuarioComponent,
+    EditarTarefaComponent
   ],
   imports: [
     HttpClientModule,

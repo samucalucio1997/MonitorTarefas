@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TarefaApiService, taskResponseDTO } from './tarefa-api.service';
 import { Observable } from 'rxjs';
 
-interface ResponsavelDTO {
+export interface ResponsavelDTO {
   id:string;
   nome:string;
 }

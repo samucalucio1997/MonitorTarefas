@@ -20,6 +20,7 @@ import com.tarefa.monitor.DTO.TarefaDTO;
 import com.tarefa.monitor.DTO.TaskResponseDTO;
 import com.tarefa.monitor.model.Tarefa;
 import com.tarefa.monitor.model.Usuario;
+import com.tarefa.monitor.repository.TarefaRepository;
 import com.tarefa.monitor.service.TarefaService;
 
 @RestController
@@ -29,6 +30,7 @@ public class TarefaController {
     @Autowired
     private TarefaService tarefaService;
 
+    
     @PostMapping(value = "/cadastrarTarefa",consumes = "application/json")
     public ResponseEntity<TaskResponseDTO> CadastrarTarefa(@RequestBody TarefaDTO task){
         try {
@@ -54,8 +56,8 @@ public class TarefaController {
          return ResponseEntity.status(200).body(this.tarefaService.ListarTarefa());
     }
     
-    @PatchMapping("/atualizar")
-    public ResponseEntity<TaskResponseDTO> AtualizarTarefa(@RequestBody Tarefa tarefa,@RequestParam("titulo") String titulo){
+    @PatchMapping(value = "/atualizar", consumes = "application/json")
+    public ResponseEntity<TaskResponseDTO> AtualizarTarefa(@RequestBody TarefaDTO tarefa,@RequestParam("titulo") String titulo){
           try {
             return ResponseEntity.status(200).body(this.tarefaService.AtualizarTarefa(titulo, tarefa));
           } catch (Exception e) {
@@ -72,6 +74,21 @@ public class TarefaController {
             // TODO: handle exception
             return ResponseEntity.badRequest().build();
          } 
+    }
+    
+    @GetMapping("/tarefax")
+    public ResponseEntity<Tarefa> pegarTarefa(@RequestParam("titulo") String titulo){
+         return ResponseEntity.status(200).body(this.tarefaService.pesquisarTarefa(titulo));
+    }
+
+    @PatchMapping("/concluir")
+    public ResponseEntity<Tarefa> Concluir(@RequestParam("titulo") String titulo){
+       try {
+         return ResponseEntity.status(200).body(this.tarefaService.concluiTarefa(titulo));
+       } catch (Exception e) {
+        // TODO: handle exception
+        return ResponseEntity.badRequest().build();
+       }
     }
 
 }

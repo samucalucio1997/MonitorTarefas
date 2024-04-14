@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 export interface taskResponseDTO {
   titulo:string;
   descricao:string;
   prioridade:string;
   data:string;
-  nome:string;
+  responsavel:string
 }
 
 
@@ -24,7 +25,7 @@ export class TarefaApiService {
     'Authorization':`${localStorage.getItem('token')}`,
     'Content-Type':'application/json'
   })
-  constructor(private srv:HttpClient) { }
+  constructor(private srv:HttpClient,private rout:Router,) { }
   
   carregarResp(): Observable<any>{
      return this.srv.get(this.url, { headers: this.headers });
@@ -38,5 +39,6 @@ export class TarefaApiService {
           console.log(resp['Tarefa']['titulo']);
         }
       );
+      this.rout.navigate(['/listar-tarefas'])
   }
 }

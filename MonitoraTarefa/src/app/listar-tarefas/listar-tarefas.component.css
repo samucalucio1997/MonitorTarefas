@@ -1,3 +1,8 @@
 .table{
     margin-bottom: 20px;
 }
+
+.btn-group {
+    display: flex;
+    gap: 5px; /* Espaço entre os botões */
+  }

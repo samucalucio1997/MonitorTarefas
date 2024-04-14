@@ -1,0 +1,38 @@
+<div class="form-tarefa">
+    <form method="post" *ngIf="frm" [formGroup]="frm" (ngSubmit)="editar()">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">titulo da tarefa:</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nome de usuário" formControlName="titulo" required/>
+        </div>   
+ 
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">descriçao da terefa:</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nome de usuário" formControlName="descricao" required/>
+        </div>   
+ 
+        <div class="mb-3">
+         <label for="exampleFormControlInput1" class="form-label">prioridade:</label>
+         <select id="exampleFormControlInput1" class="form-select" aria-label="Default select example" formControlName="prioridade" required>
+             <option selected></option>
+             <option value="baixa">Baixa</option>
+             <option value="media">Média</option>
+             <option value="alta">Alta</option>
+         </select>
+        </div> 
+        
+        <div class="mb-3">
+         <label for="exampleFormControlInput1" class="form-label">responsável:</label>
+         <select id="exampleFormControlInput1" class="form-select" aria-label="Default select example" formControlName="responsavel" required>
+             <option selected>*Usuarios</option>
+             <option *ngFor="let responsavel of lista_responsavel" [value]="responsavel.id">{{ responsavel.nome }}</option>
+         </select>
+        </div>   
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">deadline:</label>
+          <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Data" formControlName="data" required/>  
+        </div>   
+        <button type="submit">editar</button>
+    </form>
+    <a routerLink="/listar-tarefas">lista de tarefas</a>
+ </div>
+ 

@@ -4,12 +4,14 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { CriarTarefaComponent } from './criar-tarefa/criar-tarefa.component';
 import { ListarTarefasComponent } from './listar-tarefas/listar-tarefas.component';
+import { EditarTarefaComponent } from './editar-tarefa/editar-tarefa.component';
 
 const routes: Routes = [
-  {path:"login",component:LoginComponent},
+  {path:"",component:LoginComponent},
   {path:"Header",component:HeaderComponent},
   {path:"criar-tarefa",component:CriarTarefaComponent},
-  {path:"listar-tarefas",component:ListarTarefasComponent}
+  {path:"listar-tarefas",component:ListarTarefasComponent},
+  {path:"editar-tarefa",component:EditarTarefaComponent}
 ];
 
 @NgModule({

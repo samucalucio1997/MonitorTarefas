@@ -12,31 +12,37 @@
         <p>{{ item.usuario.email }}</p>
       </div>
     </li>
+    *ngFor="let item of lista"
   </ul> -->
 
   <table class="table">
     <thead>
-      <tr *ngFor="let item of lista">
+      <tr *ngIf="lista">
         <th scope="col">Tarefa</th>
-        <th scope="col">descrição</th>
-        <th scope="col">prioridade</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Prioridade</th>
         <th scope="col">Data Limite</th>
-        <th scope="col">status</th>
-        <th scope="col">responsavel</th>
+        <th scope="col">Status</th>
+        <th scope="col">Responsável</th>
+        <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of lista">
-        <th scope="row" >{{ item.tarefa.titulo }}</th>
-          <td>{{ item.tarefa.descricao }}</td>
-          <td> {{ item.tarefa.prioridade }}</td>
-          <td> {{ item.tarefa.deadline }}</td>
-          <td> {{ item.tarefa.concluido ? 'Sim' : 'Não' }}</td>
-          <td> {{ item.usuario.nome }}</td>
-          <td>
-            <button (click)="remover(item.tarefa.titulo)">Excluir</button>
-          </td>
-        </tr>
+        <td>{{ item.tarefa.titulo }}</td>
+        <td>{{ item.tarefa.descricao }}</td>
+        <td>{{ item.tarefa.prioridade }}</td>
+        <td>{{ item.tarefa.deadline }}</td>
+        <td>{{ item.tarefa.concluido ? 'Tarefa concluída' : 'Tarefa não concluída' }}</td>
+        <td>{{ item.usuario.nome }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <button class="btn btn-danger" (click)="remover(item.tarefa.titulo)">Excluir</button>
+            <button *ngIf="!item.tarefa.concluido" class="btn btn-warning" (click)="editar(item.tarefa.titulo)">Editar</button>
+            <button *ngIf="!item.tarefa.concluido" class="btn btn-success" (click)="concluir(item.tarefa.titulo)">Concluir</button>
+          </div>
+        </td>
+      </tr>
     </tbody>
   </table>
   <a routerLink="/criar-tarefa">cadastrar uma nova</a>

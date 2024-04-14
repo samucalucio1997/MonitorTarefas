@@ -1,8 +1,7 @@
-export interface taskResponseDTO  {
+interface taskResponseDTO  {
     titulo:string;
     descricao:string;
     prioridade:string;
+    responsavel:string;
     data:Date;
-    id:string;
-    nome:string;
 }

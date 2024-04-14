@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tarefa.monitor.DTO.TarefaDTO;
 import com.tarefa.monitor.DTO.TaskResponseDTO;
 import com.tarefa.monitor.model.Tarefa;
 import com.tarefa.monitor.model.Usuario;
@@ -68,7 +69,7 @@ public class TarefaService {
       return taf; 
     }
 
-    public TaskResponseDTO AtualizarTarefa(String titulo, Tarefa tarefa){
+    public TaskResponseDTO AtualizarTarefa(String titulo, TarefaDTO tarefa){
         Tarefa task = this.tarefaRepository.findByTitulo(titulo);
         if (tarefa.isConcluido()) {
             task.setConcluido(tarefa.isConcluido());
@@ -77,13 +78,24 @@ public class TarefaService {
             task.setDescricao(tarefa.getDescricao());
         }
         if (tarefa.getResponsavel()!=null) {
-            task.setResponsavel(tarefa.getResponsavel());
+            Usuario usuario= this.usuarioRepository.findById(UUID.fromString(tarefa.getResponsavel())).get();
+            task.setResponsavel(usuario);
         }
         Tarefa taref = this.tarefaRepository.save(task);
         TaskResponseDTO taskResponseDTO = new TaskResponseDTO();
         taskResponseDTO.setTarefa(taref);
         taskResponseDTO.setUsuario(task.getResponsavel());
         return taskResponseDTO;
+    }
+
+    public Tarefa pesquisarTarefa(String titulo){
+         return this.tarefaRepository.findByTitulo(titulo);
+    }
+   
+    public Tarefa concluiTarefa(String titulo){
+        Tarefa tarefa = this.pesquisarTarefa(titulo);
+        tarefa.setConcluido(true);
+        return this.tarefaRepository.save(tarefa);
     }
     
 }

@@ -16,6 +16,9 @@ public class TarefaDTO {
     private String prioridade;
     @Getter
     @Setter
+    private boolean concluido;
+    @Getter
+    @Setter
     private String data;
     @Getter
     @Setter
