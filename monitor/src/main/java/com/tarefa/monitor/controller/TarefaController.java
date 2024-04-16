@@ -81,7 +81,7 @@ public class TarefaController {
          return ResponseEntity.status(200).body(this.tarefaService.pesquisarTarefa(titulo));
     }
 
-    @PatchMapping("/concluir")
+    @PostMapping("/concluir")
     public ResponseEntity<Tarefa> Concluir(@RequestParam("titulo") String titulo){
        try {
          return ResponseEntity.status(200).body(this.tarefaService.concluiTarefa(titulo));

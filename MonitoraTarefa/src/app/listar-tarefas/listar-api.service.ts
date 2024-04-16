@@ -8,6 +8,7 @@ export class ListarApiService {
   url:string = "http://localhost:8080/task/listar";
   urldelete:string = "http://localhost:8080/task/removerTarefa";
   urlconcl:string = "http://localhost:8080/task/concluir"
+  
   header = new HttpHeaders({
      'Authorization':`${localStorage.getItem('token')}`
   })
@@ -26,6 +27,7 @@ export class ListarApiService {
   }
 
   delete(titulo: string): void {
+    console.log(this.header);
     const response:any = this.http.delete(`${this.urldelete}?titulo=${titulo}`, { headers: this.header }).subscribe(
       (s:any) => {
         console.log(s);
@@ -34,7 +36,8 @@ export class ListarApiService {
   }
 
   concluir(titulo:string): void{
-   const resp:any = this.http.patch(this.urlconcl+`?titulo=${titulo}`,{header:this.header})
+   console.log(this.header);
+   const resp:any = this.http.post(this.urlconcl+`?titulo=${titulo}`,{ headers: this.header })
     .subscribe((r:any) => {console.log(r)});
   }
 

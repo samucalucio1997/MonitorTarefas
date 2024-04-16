@@ -32,8 +32,9 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/usuario/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuario/criarUser").permitAll()
                 .requestMatchers(HttpMethod.POST, "/task/cadastrarTarefa").hasRole("ADMIN")
-                
+                .requestMatchers(HttpMethod.PATCH, "/task/atualizar").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/task/removerTarefa").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/task/concluir").hasRole("ADMIN")
                .anyRequest().authenticated();});
             } catch (Exception e) {
                e.printStackTrace();

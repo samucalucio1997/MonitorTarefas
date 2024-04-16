@@ -8,6 +8,7 @@ export interface taskResponseDTO {
   descricao:string;
   prioridade:string;
   data:string;
+  concluido:boolean;
   responsavel:string
 }
 

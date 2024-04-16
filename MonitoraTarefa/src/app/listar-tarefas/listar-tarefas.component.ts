@@ -23,6 +23,7 @@ export class ListarTarefasComponent implements OnInit{
 
   remover(titulo: string):void{
      this.srv.delete(titulo);
+     this.rout.navigate(['/listar-tarefas']);
   }
   
   editar(tarefa:string):void{

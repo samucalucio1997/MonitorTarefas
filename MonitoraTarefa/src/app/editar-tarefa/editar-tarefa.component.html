@@ -31,6 +31,12 @@
           <label for="exampleFormControlInput1" class="form-label">deadline:</label>
           <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Data" formControlName="data" required/>  
         </div>   
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="concluido" name="concluido" value="true" [checked]="sucesso" formControlName="concluido" required>
+            <label class="form-check-label" for="concluido">Concluído</label>
+        </div>
+
         <button type="submit">editar</button>
     </form>
     <a routerLink="/listar-tarefas">lista de tarefas</a>

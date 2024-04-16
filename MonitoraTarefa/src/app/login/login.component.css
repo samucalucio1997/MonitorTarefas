@@ -4,3 +4,9 @@ p{
 button{
     cursor: pointer;
 }
+
+.blockLogin{
+    width: 27vw;
+    margin-left: 35vw;
+    margin-top: 140px;
+}

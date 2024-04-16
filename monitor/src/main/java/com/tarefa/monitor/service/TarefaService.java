@@ -36,8 +36,8 @@ public class TarefaService {
         Optional<Tarefa> task = this.tarefaRepository.findAll().stream()
         .filter(n -> 
             n.getResponsavel().getNome()
-            .equals(tarefa.getResponsavel().getNome()) && n.getDescricao()
-            .equals(tarefa.getDescricao()) && n.getDeadline().equals(tarefa.getDeadline())
+            .equals(tarefa.getResponsavel().getNome()) && n.getTitulo()
+            .equals(tarefa.getTitulo()) && n.getDeadline().equals(tarefa.getDeadline())
         ).findAny();
     if (!task.isEmpty()) {
       throw new RuntimeException("Ja existe a tarefa");
